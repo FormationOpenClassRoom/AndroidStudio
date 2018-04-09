@@ -10,16 +10,27 @@
         android:textAlignment="center"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:padding="15dp"/>
-    <fragment
-        android:id="@+id/connexionFragment"
+    <LinearLayout
+        android:id="@+id/layoutConnexion"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="fr.eni_ecole.europcar.activities.SignInFragment">
-    </fragment>
-    <fragment
-        android:id="@+id/inscriptionFragment"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/connexionFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="fr.eni_ecole.europcar.activities.SignInFragment">
+        </fragment>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutInscription"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="fr.eni_ecole.europcar.activities.SignUpFragment">
-    </fragment>
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/inscriptionFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="fr.eni_ecole.europcar.activities.SignUpFragment">
+        </fragment>
+    </LinearLayout>
+
 </LinearLayout>
