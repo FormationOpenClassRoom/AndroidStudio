@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class SignInFragment extends Fragment {
     private onSignInListener mListener;
     private EditText username;
     private EditText password;
+    private CheckBox remember;
 
     public SignInFragment() {
         // Required empty public constructor
@@ -47,6 +49,7 @@ public class SignInFragment extends Fragment {
 
         username = v.findViewById(R.id.username);
         password = v.findViewById(R.id.password);
+        remember = v.findViewById(R.id.remember);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +65,7 @@ public class SignInFragment extends Fragment {
                 if(isError){
                     Toast.makeText(v.getContext(), "Veuillez corriger les erreurs ci dessus", Toast.LENGTH_SHORT).show();
                 } else {
-                    mListener.submitConnexion(username.getText().toString(), password.getText().toString());
+                    mListener.submitConnexion(username.getText().toString(), password.getText().toString(),remember.isChecked());
                 }
             }
         });
@@ -101,6 +104,6 @@ public class SignInFragment extends Fragment {
     public interface onSignInListener {
         // TODO: Update argument type and name
         void clickInscription();
-        void submitConnexion(String user, String pass);
+        void submitConnexion(String user, String pass,boolean remember);
     }
 }

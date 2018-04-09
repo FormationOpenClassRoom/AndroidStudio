@@ -1,5 +1,7 @@
 package fr.eni_ecole.europcar.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,13 +9,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import fr.eni_ecole.europcar.R;
+import fr.eni_ecole.europcar.entites.Utilisateur;
 import fr.eni_ecole.europcar.services.LocationService;
+import fr.eni_ecole.europcar.services.UtilisateurService;
 
 public class LoginActivity extends AppCompatActivity implements SignInFragment.onSignInListener, SignUpFragment.onSignUpListener {
 
     private LocationService locationService;
     private LinearLayout layoutInscription;
     private LinearLayout layoutConnexion;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editeur;
+    private Utilisateur user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +34,6 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
     @Override
     protected void onResume() {
         super.onResume();
-        //fragmentConnexion = getSupportFragmentManager().findFragmentById(R.id.connexionFragment);
-        //fragmentInscription = getSupportFragmentManager().findFragmentById(R.id.inscriptionFragment);
         layoutInscription = findViewById(R.id.layoutInscription);
         layoutConnexion = findViewById(R.id.layoutConnexion);
 
@@ -43,8 +48,22 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
     }
 
     @Override
-    public void submitConnexion(String user, String pass) {
+    public void submitConnexion(String user, String pass, boolean remember) {
+        if(remember){
+           prefs = getBaseContext().getSharedPreferences("userPrefs",MODE_PRIVATE);
+            editeur = prefs.edit();
+            editeur.putString("user",user);
+            editeur.putString("pass",pass);
+            editeur.commit();
+        }
+        this.user = new UtilisateurService(this).getUserByName(user);
+        if(this.user != null){
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
 
+        }
     }
 
     @Override

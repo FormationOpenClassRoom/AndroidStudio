@@ -30,7 +30,8 @@
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:textAlignment="center"/>
     <CheckBox
         android:id="@+id/remember"
         android:layout_width="wrap_content"
