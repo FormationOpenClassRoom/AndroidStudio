@@ -103,7 +103,7 @@ public class SignUpFragment extends Fragment {
                     pass2.setError("Vous devez confirmer votre mot de passe ");
                     isError = true;
                 }
-                if(pass.getText().toString() != pass2.getText().toString()){
+                if(!pass.getText().toString().equals(pass2.getText().toString())){
                     pass2.setError("Les mots de passe ne sont pas identiques");
                     isError = true;
                 }

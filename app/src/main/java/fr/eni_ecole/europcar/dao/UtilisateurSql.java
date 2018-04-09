@@ -14,7 +14,7 @@ public class UtilisateurSql implements IUtilisateurDao {
     }
 
     @Override
-    public void addUser(Utilisateur user) {
-
+    public int addUser(Utilisateur user) {
+        return 1;
     }
 }

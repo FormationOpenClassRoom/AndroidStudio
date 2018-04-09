@@ -19,7 +19,7 @@ public class UtilisateurService {
     public Utilisateur getUserById(int id){
         return this.userBouchon.getUserById(id);
     }
-    public void addUser(Utilisateur user){
-        this.userBouchon.addUser(user);
+    public int addUser(Utilisateur user){
+        return this.userBouchon.addUser(user);
     }
 }
