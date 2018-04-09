@@ -13,13 +13,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
+        android:text="@string/email"
         android:textAlignment="center"/>
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:inputType="textEmailAddress"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,13 +50,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You have an account ? "/>
+            android:text="@string/you_have_an_account"/>
         <TextView
             android:id="@+id/sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_in"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:cursorVisible="true"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

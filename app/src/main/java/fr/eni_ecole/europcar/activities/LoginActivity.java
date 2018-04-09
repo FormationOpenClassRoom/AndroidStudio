@@ -5,16 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import fr.eni_ecole.europcar.R;
 import fr.eni_ecole.europcar.services.LocationService;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements SignInFragment.onSignInListener, SignUpFragment.onSignUpListener {
 
     private LocationService locationService;
-    private Fragment fragmentConnexion;
-    private Fragment fragmentInscription;
+    private LinearLayout layoutInscription;
+    private LinearLayout layoutConnexion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +29,32 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         //fragmentConnexion = getSupportFragmentManager().findFragmentById(R.id.connexionFragment);
         //fragmentInscription = getSupportFragmentManager().findFragmentById(R.id.inscriptionFragment);
-        LinearLayout layoutInscription = findViewById(R.id.layoutInscription);
-        LinearLayout layoutConnexion = findViewById(R.id.layoutConnexion);
+        layoutInscription = findViewById(R.id.layoutInscription);
+        layoutConnexion = findViewById(R.id.layoutConnexion);
 
         layoutInscription.setVisibility(View.GONE);
         layoutConnexion.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void clickInscription() {
+        layoutInscription.setVisibility(View.VISIBLE);
+        layoutConnexion.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void submitConnexion(String user, String pass) {
+
+    }
+
+    @Override
+    public void onClickConnexion() {
+        layoutInscription.setVisibility(View.GONE);
+        layoutConnexion.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void submitInscription(String user, String pass) {
+
     }
 }

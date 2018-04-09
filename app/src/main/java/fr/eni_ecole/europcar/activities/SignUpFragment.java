@@ -7,13 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.eni_ecole.europcar.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SignUpFragment.OnFragmentInteractionListener} interface
+ * {@link SignUpFragment.onSignUpListener} interface
  * to handle interaction events.
  * Use the {@link SignUpFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -28,7 +32,12 @@ public class SignUpFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private onSignUpListener mListener;
+    private EditText user;
+    private EditText pass;
+    private EditText pass2;
+    private Button btnSubmit;
+    private TextView txtSignIn;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -65,21 +74,55 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false);
-    }
+        View v = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        user = v.findViewById(R.id.username);
+        pass = v.findViewById(R.id.password);
+        pass2 = v.findViewById(R.id.password2);
+        btnSubmit = v.findViewById(R.id.btnSubmit);
+        txtSignIn = v.findViewById(R.id.sign_in);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        txtSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onClickConnexion();
+            }
+        });
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isError = false;
+                if(user.getText().toString().isEmpty()){
+                    user.setError("Vous devez indiquer une adresse mail");
+                    isError = true;
+                }
+                if(pass.getText().toString().isEmpty()){
+                    pass.setError("Vous devez indiquer un mot de passe");
+                    isError = true;
+                }
+                if(pass2.getText().toString().isEmpty()){
+                    pass2.setError("Vous devez confirmer votre mot de passe ");
+                    isError = true;
+                }
+                if(pass.getText().toString() != pass2.getText().toString()){
+                    pass2.setError("Les mots de passe ne sont pas identiques");
+                    isError = true;
+                }
+                if(isError){
+                    Toast.makeText(v.getContext(), "Vous devez corriger les erreurs ci dessus", Toast.LENGTH_SHORT).show();
+                } else {
+                    mListener.submitInscription(user.getText().toString(), pass.getText().toString());
+                }
+            }
+        });
+
+        return v;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof onSignUpListener) {
+            mListener = (onSignUpListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -102,8 +145,9 @@ public class SignUpFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface onSignUpListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onClickConnexion();
+        void submitInscription(String user, String pass);
     }
 }

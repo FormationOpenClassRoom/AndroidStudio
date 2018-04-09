@@ -8,19 +8,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.eni_ecole.europcar.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SignInFragment.OnFragmentInteractionListener} interface
+ * {@link SignInFragment.onSignInListener} interface
  * to handle interaction events.
  */
 public class SignInFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private onSignInListener mListener;
+    private EditText username;
+    private EditText password;
 
     public SignInFragment() {
         // Required empty public constructor
@@ -40,12 +44,26 @@ public class SignInFragment extends Fragment {
             }
         });
         Button btnSubmit = v.findViewById(R.id.btnSubmit);
-        
+
+        username = v.findViewById(R.id.username);
+        password = v.findViewById(R.id.password);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                mListener.submitConnexion();
+                boolean isError = false;
+                if(username.getText().toString().isEmpty()){
+                    username.setError("Vous devez indiquer une adresse mail");
+                    isError = true;
+                }
+                if(password.getText().toString().isEmpty()){
+                    password.setError("Vous devez indiquer un mot de passe");
+                    isError = true;
+                }
+                if(isError){
+                    Toast.makeText(v.getContext(), "Veuillez corriger les erreurs ci dessus", Toast.LENGTH_SHORT).show();
+                } else {
+                    mListener.submitConnexion(username.getText().toString(), password.getText().toString());
+                }
             }
         });
 
@@ -56,8 +74,8 @@ public class SignInFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof onSignInListener) {
+            mListener = (onSignInListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -80,9 +98,9 @@ public class SignInFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface onSignInListener {
         // TODO: Update argument type and name
         void clickInscription();
-        void submitConnexion();
+        void submitConnexion(String user, String pass);
     }
 }
