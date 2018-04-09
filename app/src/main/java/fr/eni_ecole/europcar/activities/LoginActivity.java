@@ -2,7 +2,6 @@ package fr.eni_ecole.europcar.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import fr.eni_ecole.europcar.ModifAgenceActivity;
 import fr.eni_ecole.europcar.R;
 import fr.eni_ecole.europcar.entites.Utilisateur;
 import fr.eni_ecole.europcar.services.LocationService;

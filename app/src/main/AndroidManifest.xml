@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MainActivity" />
-        <activity android:name=".ModifAgenceActivity"></activity>
+        <activity android:name=".activities.ModifAgenceActivity"></activity>
     </application>
 
 </manifest>

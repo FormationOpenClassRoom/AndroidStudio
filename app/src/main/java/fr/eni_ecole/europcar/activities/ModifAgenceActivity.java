@@ -1,7 +1,9 @@
-package fr.eni_ecole.europcar;
+package fr.eni_ecole.europcar.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import fr.eni_ecole.europcar.R;
 
 public class ModifAgenceActivity extends AppCompatActivity {
 
