@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import fr.eni_ecole.europcar.R;
@@ -38,7 +39,15 @@ public class SignInFragment extends Fragment {
                 mListener.clickInscription();
             }
         });
+        Button btnSubmit = v.findViewById(R.id.btnSubmit);
+        
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                mListener.submitConnexion();
+            }
+        });
 
         return v;
     }
@@ -74,5 +83,6 @@ public class SignInFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void clickInscription();
+        void submitConnexion();
     }
 }
