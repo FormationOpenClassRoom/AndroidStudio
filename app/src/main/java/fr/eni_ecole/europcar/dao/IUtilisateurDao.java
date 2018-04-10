@@ -3,7 +3,7 @@ package fr.eni_ecole.europcar.dao;
 import fr.eni_ecole.europcar.entites.Utilisateur;
 
 public interface IUtilisateurDao {
-    public Utilisateur getUserById(int id);
-    public Utilisateur getUserByName(String username);
-    public int addUser(Utilisateur user);
+    public Utilisateur getUserById(String userId);
+    public Utilisateur getUserByEmail(String email);
+    public String addUser(Utilisateur user);
 }

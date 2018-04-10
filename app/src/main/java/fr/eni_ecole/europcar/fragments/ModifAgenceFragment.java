@@ -1,4 +1,4 @@
-package fr.eni_ecole.europcar.activities;
+package fr.eni_ecole.europcar.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,14 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import fr.eni_ecole.europcar.R;
+import fr.eni_ecole.europcar.entites.Agence;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ModifAgenceFragment.OnFragmentInteractionListener} interface
+ * {@link ModifAgenceFragment.onSettingsListener} interface
  * to handle interaction events.
  * Use the {@link ModifAgenceFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -31,7 +33,7 @@ public class ModifAgenceFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private onSettingsListener mListener;
 
     private EditText raisonSociale;
     private EditText siret;
@@ -77,17 +79,48 @@ public class ModifAgenceFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_modif_agence, container, false);
 
-        raisonSociale = v.findViewById(R.id.raison_sociale);
-        siret = v.findViewById(R.id.siret);
-        voie = v.findViewById(R.id.voie);
-        codePostal = v.findViewById(R.id.code_postal);
-        ville = v.findViewById(R.id.ville);
-        btnSettings = v.findViewById(R.id.btnSettings);
+        this.raisonSociale = v.findViewById(R.id.raison_sociale);
+        this.siret = v.findViewById(R.id.siret);
+        this.voie = v.findViewById(R.id.voie);
+        this.codePostal = v.findViewById(R.id.code_postal);
+        this.ville = v.findViewById(R.id.ville);
+        this.btnSettings = v.findViewById(R.id.btnSettings);
 
-        btnSettings.setOnClickListener(new View.OnClickListener() {
+        this.btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                boolean isError = false;
+                if(raisonSociale.getText().toString().isEmpty()){
+                    raisonSociale.setError("Vous devez indiquer la raison sociale");
+                    isError = true;
+                }
+                if(siret.getText().toString().isEmpty()){
+                    siret.setError("Vous devez indiquer le numéro de SIRET");
+                    isError = true;
+                }
+                if(voie.getText().toString().isEmpty()){
+                    voie.setError("Vous devez indiquer la voie de l'adresse");
+                    isError = true;
+                }
+                if(codePostal.getText().toString().isEmpty()){
+                    codePostal.setError("Vous devez indiquer le code postal de l'adresse");
+                    isError = true;
+                }
+                if(ville.getText().toString().isEmpty()){
+                    ville.setError("Vous devez indiquer la ville de l'adresse");
+                    isError = true;
+                }
+                if(isError){
+                    Toast.makeText(v.getContext(), "Veuillez corriger les erreurs avant de continuer", Toast.LENGTH_SHORT).show();
+                } else {
+                    Agence agence = new Agence();
+                    agence.setRaisonSociale(raisonSociale.getText().toString());
+                    agence.setSiret(siret.getText().toString());
+                    agence.setVoie(voie.getText().toString());
+                    agence.setCodePostal(codePostal.getText().toString());
+                    agence.setVille(ville.getText().toString());
+                    mListener.onSubmitSettings(agence);
+                }
             }
         });
 
@@ -98,8 +131,8 @@ public class ModifAgenceFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof onSettingsListener) {
+            this.mListener = (onSettingsListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -109,7 +142,7 @@ public class ModifAgenceFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        this.mListener = null;
     }
 
     /**
@@ -122,8 +155,8 @@ public class ModifAgenceFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface onSettingsListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onSubmitSettings(Agence agence);
     }
 }

@@ -2,9 +2,9 @@ package fr.eni_ecole.europcar.dao;
 
 import fr.eni_ecole.europcar.entites.Utilisateur;
 
-public class UtilisateurSql implements IUtilisateurDao {
+public class UtilisateurVolley implements IUtilisateurDao {
     @Override
-    public Utilisateur getUserById(String userId) {
+    public Utilisateur getUserById(int id) {
         return null;
     }
 
@@ -14,7 +14,7 @@ public class UtilisateurSql implements IUtilisateurDao {
     }
 
     @Override
-    public String addUser(Utilisateur user) {
-        return "12";
+    public int addUser(Utilisateur user) {
+        return 0;
     }
 }

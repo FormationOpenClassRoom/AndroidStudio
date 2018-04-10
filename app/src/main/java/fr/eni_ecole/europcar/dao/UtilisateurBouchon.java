@@ -15,17 +15,17 @@ public class UtilisateurBouchon implements IUtilisateurDao {
     }
 
     @Override
-    public Utilisateur getUserById(int id) {
+    public Utilisateur getUserById(String userId) {
         return new Utilisateur("TOTO", "password");
     }
 
     @Override
-    public Utilisateur getUserByName(String username) {
-        return new Utilisateur(username,"mot de passe");
+    public Utilisateur getUserByEmail(String email) {
+        return new Utilisateur(email,"mot de passe");
     }
 
     @Override
-    public int addUser(Utilisateur user) {
-        return 1;
+    public String addUser(Utilisateur user) {
+        return "12";
     }
 }

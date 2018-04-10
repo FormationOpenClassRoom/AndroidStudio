@@ -10,11 +10,12 @@ public class Voiture {
     private float tarifMoyen;
     private boolean isDisponible;
     private String libelle;
+    private boolean sync;
 
     public Voiture() {
     }
 
-    public Voiture(String vehiculeId, int nbPlaces, int locationMin, int locationMax, float tarifMin, float tarifMax, float tarifMoyen, boolean isDisponible, String libelle) {
+    public Voiture(String vehiculeId, int nbPlaces, int locationMin, int locationMax, float tarifMin, float tarifMax, float tarifMoyen, boolean isDisponible, String libelle, boolean sync) {
         this.vehiculeId = vehiculeId;
         this.nbPlaces = nbPlaces;
         this.locationMin = locationMin;
@@ -24,6 +25,7 @@ public class Voiture {
         this.tarifMoyen = tarifMoyen;
         this.isDisponible = isDisponible;
         this.libelle = libelle;
+        this.sync = sync;
     }
 
     public String getVehiculeId() {
@@ -96,5 +98,13 @@ public class Voiture {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public boolean isSync() {
+        return sync;
+    }
+
+    public void setSync(boolean sync) {
+        this.sync = sync;
     }
 }

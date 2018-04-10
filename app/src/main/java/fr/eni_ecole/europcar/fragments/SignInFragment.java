@@ -1,7 +1,6 @@
-package fr.eni_ecole.europcar.activities;
+package fr.eni_ecole.europcar.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

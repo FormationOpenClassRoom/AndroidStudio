@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import fr.eni_ecole.europcar.R;
 import fr.eni_ecole.europcar.entites.Utilisateur;
+import fr.eni_ecole.europcar.fragments.SignInFragment;
+import fr.eni_ecole.europcar.fragments.SignUpFragment;
 import fr.eni_ecole.europcar.services.LocationService;
 import fr.eni_ecole.europcar.services.UtilisateurService;
 
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
             password.setText(this.prefs.getString("pass",""));
             CheckBox remember = this.layoutConnexion.findViewById(R.id.remember);
             remember.setChecked(this.prefs.getBoolean("remember",false));
-            /*this.user = new UtilisateurService(this).getUserByName(prefs.getString("user",""));
+            /*this.user = new UtilisateurService(this).getUserByEmail(prefs.getString("user",""));
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("id",this.user.getId());
             startActivity(intent);
@@ -65,11 +67,11 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
     }
 
     @Override
-    public void submitConnexion(String user, String pass, boolean remember) {
+    public void submitConnexion(String email, String pass, boolean remember) {
         if(remember){
             this.prefs = getBaseContext().getSharedPreferences("userPrefs",MODE_PRIVATE);
             this.editeur = prefs.edit();
-            this.editeur.putString("user",user);
+            this.editeur.putString("user",email);
             this.editeur.putString("pass",pass);
             this.editeur.putBoolean("remember", remember);
             this.editeur.commit();
@@ -81,10 +83,10 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
             this.editeur.remove("remember");
             this.editeur.commit();
         }
-        this.user = new UtilisateurService(this).getUserByName(user);
+        this.user = new UtilisateurService(this).getUserByEmail(email);
         if(this.user != null){
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            intent.putExtra("id",this.user.getId());
+            intent.putExtra("id",this.user.getUserId());
             startActivity(intent);
             finish();
         } else {
@@ -99,13 +101,16 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
     }
 
     @Override
-    public void submitInscription(String user, String pass) {
-        this.user = new UtilisateurService(this).getUserById(
-                new UtilisateurService(this).addUser(new Utilisateur(user,pass))
-        );
+    public void submitInscription(Utilisateur user) {
+        Inscription(user);
         Intent intent = new Intent(LoginActivity.this, ModifAgenceActivity.class);
-        intent.putExtra("id", this.user.getId());
+        intent.putExtra("id", this.user.getUserId());
         startActivity(intent);
         finish();
+    }
+    public void Inscription(Utilisateur user){
+        this.user = new UtilisateurService(this).getUserById(
+                new UtilisateurService(this).addUser(new Utilisateur(user.getEmail(),user.getPassword()))
+        );
     }
 }

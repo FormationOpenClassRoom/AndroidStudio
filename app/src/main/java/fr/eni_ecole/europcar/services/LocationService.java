@@ -4,8 +4,8 @@ package fr.eni_ecole.europcar.services;
 
 import java.util.List;
 
-import fr.eni_ecole.europcar.dao.LocationBouchon;
-import fr.eni_ecole.europcar.dao.LocationSql;
+import fr.eni_ecole.europcar.dao.ReservationBouchon;
+import fr.eni_ecole.europcar.dao.ReservationSql;
 import fr.eni_ecole.europcar.entites.Agence;
 import fr.eni_ecole.europcar.entites.Reservation;
 import fr.eni_ecole.europcar.entites.Restitution;
@@ -14,8 +14,8 @@ import fr.eni_ecole.europcar.entites.Voiture;
 
 public class LocationService {
 
-    private LocationBouchon locationBouchon;
-    private LocationSql locationSql;
+    private ReservationBouchon locationBouchon;
+    private ReservationSql locationSql;
 
     public Utilisateur inscription(){
 

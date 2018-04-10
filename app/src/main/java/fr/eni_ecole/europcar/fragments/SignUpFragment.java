@@ -1,7 +1,6 @@
-package fr.eni_ecole.europcar.activities;
+package fr.eni_ecole.europcar.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.eni_ecole.europcar.R;
+import fr.eni_ecole.europcar.entites.Utilisateur;
+import fr.eni_ecole.europcar.services.UtilisateurService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,11 +34,12 @@ public class SignUpFragment extends Fragment {
     private String mParam2;
 
     private onSignUpListener mListener;
-    private EditText user;
+    private EditText email;
     private EditText pass;
     private EditText pass2;
     private Button btnSubmit;
     private TextView txtSignIn;
+    private EditText token;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -75,11 +77,12 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        user = v.findViewById(R.id.username);
+        email = v.findViewById(R.id.username);
         pass = v.findViewById(R.id.password);
         pass2 = v.findViewById(R.id.password2);
         btnSubmit = v.findViewById(R.id.btnSubmit);
         txtSignIn = v.findViewById(R.id.sign_in);
+        token = v.findViewById(R.id.token);
 
         txtSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,8 +94,8 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 boolean isError = false;
-                if(user.getText().toString().isEmpty()){
-                    user.setError("Vous devez indiquer une adresse mail");
+                if(email.getText().toString().isEmpty()){
+                    email.setError("Vous devez indiquer une adresse mail");
                     isError = true;
                 }
                 if(pass.getText().toString().isEmpty()){
@@ -107,10 +110,18 @@ public class SignUpFragment extends Fragment {
                     pass2.setError("Les mots de passe ne sont pas identiques");
                     isError = true;
                 }
+                if(token.getText().toString().isEmpty()){
+                    token.setError("Vous devez indiquer un token de sécurité");
+                    isError = true;
+                }
                 if(isError){
                     Toast.makeText(v.getContext(), "Vous devez corriger les erreurs ci dessus", Toast.LENGTH_SHORT).show();
                 } else {
-                    mListener.submitInscription(user.getText().toString(), pass.getText().toString());
+                    Utilisateur user = new Utilisateur();
+                    user.setEmail(email.getText().toString());
+                    user.setPassword(pass.getText().toString());
+                    user.setToken(token.getText().toString());
+                    mListener.submitInscription(user);
                 }
             }
         });
@@ -148,6 +159,6 @@ public class SignUpFragment extends Fragment {
     public interface onSignUpListener {
         // TODO: Update argument type and name
         void onClickConnexion();
-        void submitInscription(String user, String pass);
+        void submitInscription(Utilisateur user);
     }
 }

@@ -13,13 +13,13 @@ public class UtilisateurService {
         this.userBouchon = new UtilisateurBouchon(context);
     }
 
-    public Utilisateur getUserByName(String username){
-        return this.userBouchon.getUserByName(username);
+    public Utilisateur getUserByEmail(String email){
+        return this.userBouchon.getUserByEmail(email);
     }
-    public Utilisateur getUserById(int id){
-        return this.userBouchon.getUserById(id);
+    public Utilisateur getUserById(String userId){
+        return this.userBouchon.getUserById(userId);
     }
-    public int addUser(Utilisateur user){
+    public String addUser(Utilisateur user){
         return this.userBouchon.addUser(user);
     }
 }

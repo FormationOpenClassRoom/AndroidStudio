@@ -8,11 +8,12 @@ public class Reservation {
     private int dateFin;
     private float tarifJournalier;
     private boolean isEncours;
+    private boolean sync;
 
     public Reservation() {
     }
 
-    public Reservation(String reservationId, String vehiculeId, String agenceId, int dateDebut, int dateFin, float tarifJournalier, boolean isEncours) {
+    public Reservation(String reservationId, String vehiculeId, String agenceId, int dateDebut, int dateFin, float tarifJournalier, boolean isEncours, boolean sync) {
         this.reservationId = reservationId;
         this.vehiculeId = vehiculeId;
         this.agenceId = agenceId;
@@ -20,6 +21,7 @@ public class Reservation {
         this.dateFin = dateFin;
         this.tarifJournalier = tarifJournalier;
         this.isEncours = isEncours;
+        this.sync = sync;
     }
 
     public String getReservationId() {
@@ -76,5 +78,13 @@ public class Reservation {
 
     public void setEncours(boolean encours) {
         isEncours = encours;
+    }
+
+    public boolean isSync() {
+        return sync;
+    }
+
+    public void setSync(boolean sync) {
+        this.sync = sync;
     }
 }

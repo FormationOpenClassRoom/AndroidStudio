@@ -19,4 +19,5 @@
     <string name="street">Voie</string>
     <string name="zip_code">Code Postal</string>
     <string name="city">Ville</string>
+    <string name="security_token">Security Token</string>
 </resources>

@@ -7,17 +7,19 @@ public class Restitution {
     private boolean isPleinEffectue;
     private int nbKmEffectues;
     private String photo;
+    private boolean sync;
 
     public Restitution() {
     }
 
-    public Restitution(String retourId, String locationId, boolean isEndommage, boolean isPleinEffectue, int nbKmEffectues, String photo) {
+    public Restitution(String retourId, String locationId, boolean isEndommage, boolean isPleinEffectue, int nbKmEffectues, String photo, boolean sync) {
         this.retourId = retourId;
         this.locationId = locationId;
         this.isEndommage = isEndommage;
         this.isPleinEffectue = isPleinEffectue;
         this.nbKmEffectues = nbKmEffectues;
         this.photo = photo;
+        this.sync = sync;
     }
 
     public String getRetourId() {
@@ -66,5 +68,13 @@ public class Restitution {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public boolean isSync() {
+        return sync;
+    }
+
+    public void setSync(boolean sync) {
+        this.sync = sync;
     }
 }

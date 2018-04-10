@@ -1,46 +1,47 @@
 package fr.eni_ecole.europcar.entites;
 
 public class Utilisateur {
-    private int id;
-    private String username;
+    private String userId;
+    private String email;
     private String password;
-    private String agence;
+    private String agenceId;
+    private String token;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(String username, String password) {
-        this.username = username;
+    public Utilisateur(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public Utilisateur(String username, String password, String agence) {
-        this.username = username;
+    public Utilisateur(String email, String password, String agenceId) {
+        this.email = email;
         this.password = password;
-        this.agence = agence;
+        this.agenceId = agenceId;
     }
 
-    public Utilisateur(int id, String username, String password, String agence) {
-        this.id = id;
-        this.username = username;
+    public Utilisateur(String userId, String email, String password, String agenceId, String token) {
+        this.userId = userId;
+        this.email = email;
         this.password = password;
-        this.agence = agence;
+        this.agenceId = agenceId;
     }
 
-    public int getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -51,11 +52,19 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public String getAgence() {
-        return agence;
+    public String getAgenceId() {
+        return agenceId;
     }
 
-    public void setAgence(String agence) {
-        this.agence = agence;
+    public void setAgenceId(String agenceId) {
+        this.agenceId = agenceId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

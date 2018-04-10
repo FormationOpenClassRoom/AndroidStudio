@@ -18,7 +18,7 @@
             android:id="@+id/connexionFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="fr.eni_ecole.europcar.activities.SignInFragment">
+            class="fr.eni_ecole.europcar.fragments.SignInFragment">
         </fragment>
     </LinearLayout>
     <LinearLayout
@@ -29,7 +29,7 @@
             android:id="@+id/inscriptionFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="fr.eni_ecole.europcar.activities.SignUpFragment">
+            class="fr.eni_ecole.europcar.fragments.SignUpFragment">
         </fragment>
     </LinearLayout>
 
