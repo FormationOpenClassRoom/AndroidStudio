@@ -13,4 +13,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="you_have_an_account">You have an account ? </string>
+    <string name="update_your_settings">Update your settings</string>
+    <string name="company_name">Company Name</string>
+    <string name="company_number">Company Number</string>
+    <string name="street">Street</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="city">City</string>
 </resources>

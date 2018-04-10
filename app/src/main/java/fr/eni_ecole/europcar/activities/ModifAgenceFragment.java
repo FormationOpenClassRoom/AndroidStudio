@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import fr.eni_ecole.europcar.R;
 
@@ -30,6 +32,13 @@ public class ModifAgenceFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private EditText raisonSociale;
+    private EditText siret;
+    private EditText voie;
+    private EditText codePostal;
+    private EditText ville;
+    private Button btnSettings;
 
     public ModifAgenceFragment() {
         // Required empty public constructor
@@ -66,15 +75,25 @@ public class ModifAgenceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modif_agence, container, false);
+        View v = inflater.inflate(R.layout.fragment_modif_agence, container, false);
+
+        raisonSociale = v.findViewById(R.id.raison_sociale);
+        siret = v.findViewById(R.id.siret);
+        voie = v.findViewById(R.id.voie);
+        codePostal = v.findViewById(R.id.code_postal);
+        ville = v.findViewById(R.id.ville);
+        btnSettings = v.findViewById(R.id.btnSettings);
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {

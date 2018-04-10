@@ -7,7 +7,7 @@ import java.util.List;
 import fr.eni_ecole.europcar.dao.LocationBouchon;
 import fr.eni_ecole.europcar.dao.LocationSql;
 import fr.eni_ecole.europcar.entites.Agence;
-import fr.eni_ecole.europcar.entites.Location;
+import fr.eni_ecole.europcar.entites.Reservation;
 import fr.eni_ecole.europcar.entites.Restitution;
 import fr.eni_ecole.europcar.entites.Utilisateur;
 import fr.eni_ecole.europcar.entites.Voiture;
@@ -24,7 +24,7 @@ public class LocationService {
     public Utilisateur connexion(){
         return null;
     }
-    public Location location(){
+    public Reservation location(){
         return null;
     }
     public Restitution restitution(){
@@ -33,7 +33,7 @@ public class LocationService {
     public List<Voiture> listeVehicules(){
         return null;
     }
-    public List<Location> listeLocations(){
+    public List<Reservation> listeLocations(){
         return null;
     }
     public Agence agence(){

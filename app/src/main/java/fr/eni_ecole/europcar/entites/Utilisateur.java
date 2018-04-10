@@ -4,7 +4,7 @@ public class Utilisateur {
     private int id;
     private String username;
     private String password;
-    private Agence agence;
+    private String agence;
 
     public Utilisateur() {
     }
@@ -14,13 +14,13 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public Utilisateur(String username, String password, Agence agence) {
+    public Utilisateur(String username, String password, String agence) {
         this.username = username;
         this.password = password;
         this.agence = agence;
     }
 
-    public Utilisateur(int id, String username, String password, Agence agence) {
+    public Utilisateur(int id, String username, String password, String agence) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -51,11 +51,11 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public Agence getAgence() {
+    public String getAgence() {
         return agence;
     }
 
-    public void setAgence(Agence agence) {
+    public void setAgence(String agence) {
         this.agence = agence;
     }
 }

@@ -11,7 +11,12 @@
     <string name="submit">Envoyer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm_password">Confirmation du mot de passe</string>
     <string name="you_have_an_account">Vous avez un compte ? </string>
+    <string name="update_your_settings">Modifier vos paramètres</string>
+    <string name="company_name">Raison Sociale</string>
+    <string name="company_number">SIRET</string>
+    <string name="street">Voie</string>
+    <string name="zip_code">Code Postal</string>
+    <string name="city">Ville</string>
 </resources>
