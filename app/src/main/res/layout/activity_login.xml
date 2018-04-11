@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<ScrollView
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/titre_app"
-        android:textAlignment="center"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:padding="15dp"/>
-    <LinearLayout
-        android:id="@+id/layoutConnexion"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <fragment
-            android:id="@+id/connexionFragment"
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="fr.eni_ecole.europcar.fragments.SignInFragment">
-        </fragment>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/layoutInscription"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <fragment
-            android:id="@+id/inscriptionFragment"
+            android:layout_height="116dp"
+            android:src="@drawable/logo_europcar" />
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="fr.eni_ecole.europcar.fragments.SignUpFragment">
-        </fragment>
+            android:layout_height="wrap_content"
+            android:text="@string/titre_app"
+            android:textAlignment="center"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:padding="15dp"/>
+        <LinearLayout
+            android:id="@+id/layoutConnexion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <fragment
+                android:id="@+id/connexionFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="fr.eni_ecole.europcar.fragments.SignInFragment">
+            </fragment>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layoutInscription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <fragment
+                android:id="@+id/inscriptionFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="fr.eni_ecole.europcar.fragments.SignUpFragment">
+            </fragment>
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

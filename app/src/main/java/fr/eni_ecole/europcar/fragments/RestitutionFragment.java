@@ -4,28 +4,38 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import fr.eni_ecole.europcar.Adapters.ReservationAdapter;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import fr.eni_ecole.europcar.R;
-import fr.eni_ecole.europcar.activities.RestitutionActivity;
 import fr.eni_ecole.europcar.entites.Reservation;
 import fr.eni_ecole.europcar.services.ReservationService;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ListeReservationsFragment.OnFragmentInteractionListener} interface
+ * {@link RestitutionFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ListeReservationsFragment#newInstance} factory method to
+ * Use the {@link RestitutionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListeReservationsFragment extends Fragment {
+public class RestitutionFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,10 +46,8 @@ public class ListeReservationsFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private ListView listeResa;
-    private ReservationAdapter adapter;
 
-    public ListeReservationsFragment() {
+    public RestitutionFragment() {
         // Required empty public constructor
     }
 
@@ -49,11 +57,11 @@ public class ListeReservationsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ListeReservationsFragment.
+     * @return A new instance of fragment RestitutionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListeReservationsFragment newInstance(String param1, String param2) {
-        ListeReservationsFragment fragment = new ListeReservationsFragment();
+    public static RestitutionFragment newInstance(String param1, String param2) {
+        RestitutionFragment fragment = new RestitutionFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,26 +82,25 @@ public class ListeReservationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_liste_reservations, container, false);
-
-        listeResa = v.findViewById(R.id.liste_reservations);
+        View v = inflater.inflate(R.layout.fragment_restitution, container, false);
+        String resaId = getActivity().getIntent().getStringExtra("id");
         ReservationService service = new ReservationService();
-        adapter = new ReservationAdapter(v.getContext(),R.layout.ligne_reservation,service.getAll());
-        listeResa.setAdapter(adapter);
+        Reservation resa = service.resaById(resaId);
 
-        listeResa.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView,
-                                    View view,
-                                    int position,
-                                    long l) {
-                Reservation resa = (Reservation) adapter.getItem(position);
-                //Article article2 = ArticleService.getInstance().getList().get(position);
-                Intent intent = new Intent(view.getContext(), RestitutionActivity.class);
-                intent.putExtra("id", resa.getReservationId());
-                startActivity(intent);
-            }
-        });
+        TextView vehiculeId = v.findViewById(R.id.resa_vehiculeId);
+        TextView dateDebut = v.findViewById(R.id.resa_dateDebut);
+        TextView dateFin = v.findViewById(R.id.resa_dateFin);
+        TextView tarifJournalier = v.findViewById(R.id.resa_tarifJournalier);
+        CheckBox isEndommage = v.findViewById(R.id.rest_endommage);
+        CheckBox isPlein = v.findViewById(R.id.rest_plein);
+        Button btnPhoto = v.findViewById(R.id.btnPhoto);
+        Button btnRendre = v.findViewById(R.id.btnRendre);
+
+        vehiculeId.setText(resa.getVehiculeId());
+        dateDebut.setText(new SimpleDateFormat("dd/MM/yyyy").format(resa.getDateDebut()));
+        dateFin.setText(new SimpleDateFormat("dd/MM/yyyy").format(resa.getDateFin()));
+        tarifJournalier.setText(String.valueOf(resa.getTarifJournalier()));
+        //Toast.makeText(v.getContext(), "RESAID = " + resaId, Toast.LENGTH_SHORT).show();
         return v;
     }
 
@@ -127,6 +134,22 @@ public class ListeReservationsFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onClickRendre(Uri uri);
+    }
+
+    private Uri file;
+    public void takePicture(){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"LiveCoding");
+        if(!mediaStorageDir.exists()){
+            mediaStorageDir.mkdirs();
+        }
+        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
+        file = Uri.fromFile(new File(mediaStorageDir.getPath() + File.separator + timestamp + ".jpg"));
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+        startActivityForResult(intent, 42);
     }
 }

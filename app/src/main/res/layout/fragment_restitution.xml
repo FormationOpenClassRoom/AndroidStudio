@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <TextView
+            android:id="@+id/resa_vehiculeId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="VehiculeId"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/resa_dateDebut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date de début"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - "/>
+            <TextView
+                android:id="@+id/resa_dateFin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date de fin"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/resa_tarifJournalier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tarif journalier"
+            android:textAlignment="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <CheckBox
+            android:id="@+id/rest_endommage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Est Endommagé"/>
+        <CheckBox
+            android:id="@+id/rest_plein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Le plein est fait"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre de kilomêtres"/>
+        <EditText
+            android:id="@+id/kilometrage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+        <Button
+            android:id="@+id/btnPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ajouter une photo" />
+        <Button
+            android:id="@+id/btnRendre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rendre"/>
+    </LinearLayout>
+</LinearLayout>

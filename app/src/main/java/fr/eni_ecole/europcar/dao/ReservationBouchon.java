@@ -34,7 +34,15 @@ public class ReservationBouchon implements IReservationDao {
 
     @Override
     public Reservation getResaById(String resaId) {
-        return null;
+        Reservation resa = null;
+        if(resaId != null){
+            for(int i = 0; i < this.resas.size(); i++){
+                if(resas.get(i).getReservationId().equals(resaId)){
+                    resa = resas.get(i);
+                }
+            }
+        }
+        return resa;
     }
 
     @Override
