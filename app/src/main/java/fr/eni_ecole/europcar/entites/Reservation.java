@@ -4,16 +4,30 @@ public class Reservation {
     private String reservationId;
     private String vehiculeId;
     private String agenceId;
-    private int dateDebut;
-    private int dateFin;
+    private long dateDebut;
+    private long dateFin;
     private float tarifJournalier;
     private boolean isEncours;
     private boolean sync;
 
+    /**
+     * Constructeur par défaut
+     */
     public Reservation() {
     }
 
-    public Reservation(String reservationId, String vehiculeId, String agenceId, int dateDebut, int dateFin, float tarifJournalier, boolean isEncours, boolean sync) {
+    /**
+     * Constructeur avec paramètres
+     * @param reservationId
+     * @param vehiculeId
+     * @param agenceId
+     * @param dateDebut
+     * @param dateFin
+     * @param tarifJournalier
+     * @param isEncours
+     * @param sync
+     */
+    public Reservation(String reservationId, String vehiculeId, String agenceId, long dateDebut, long dateFin, float tarifJournalier, boolean isEncours, boolean sync) {
         this.reservationId = reservationId;
         this.vehiculeId = vehiculeId;
         this.agenceId = agenceId;
@@ -24,6 +38,9 @@ public class Reservation {
         this.sync = sync;
     }
 
+    /**
+     * Getters et Setters
+     */
     public String getReservationId() {
         return reservationId;
     }
@@ -48,19 +65,19 @@ public class Reservation {
         this.agenceId = agenceId;
     }
 
-    public int getDateDebut() {
+    public long getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(int dateDebut) {
+    public void setDateDebut(long dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public int getDateFin() {
+    public long getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(int dateFin) {
+    public void setDateFin(long dateFin) {
         this.dateFin = dateFin;
     }
 

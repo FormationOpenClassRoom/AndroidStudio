@@ -7,26 +7,52 @@ public class Utilisateur {
     private String agenceId;
     private String token;
 
+    /**
+     * Constructeur par défaut
+     */
     public Utilisateur() {
     }
 
+    /**
+     * Constructeur avec paramètres
+     * @param email
+     * @param password
+     */
     public Utilisateur(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
+    /**
+     * Constructeur avec paramètres
+     * @param email
+     * @param password
+     * @param agenceId
+     */
     public Utilisateur(String email, String password, String agenceId) {
         this.email = email;
         this.password = password;
         this.agenceId = agenceId;
     }
 
+    /**
+     * Constructeur avec paramètres
+     * @param userId
+     * @param email
+     * @param password
+     * @param agenceId
+     * @param token
+     */
     public Utilisateur(String userId, String email, String password, String agenceId, String token) {
         this.userId = userId;
         this.email = email;
         this.password = password;
         this.agenceId = agenceId;
     }
+
+    /**
+     * Getters et Setters
+     */
 
     public String getUserId() {
         return userId;

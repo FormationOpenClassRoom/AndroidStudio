@@ -14,12 +14,12 @@ import fr.eni_ecole.europcar.R;
 import fr.eni_ecole.europcar.entites.Utilisateur;
 import fr.eni_ecole.europcar.fragments.SignInFragment;
 import fr.eni_ecole.europcar.fragments.SignUpFragment;
-import fr.eni_ecole.europcar.services.LocationService;
+import fr.eni_ecole.europcar.services.ReservationService;
 import fr.eni_ecole.europcar.services.UtilisateurService;
 
 public class LoginActivity extends AppCompatActivity implements SignInFragment.onSignInListener, SignUpFragment.onSignUpListener {
 
-    private LocationService locationService;
+    private ReservationService locationService;
     private LinearLayout layoutInscription;
     private LinearLayout layoutConnexion;
     private SharedPreferences prefs;
@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
         this.layoutInscription = findViewById(R.id.layoutInscription);
         this.layoutConnexion = findViewById(R.id.layoutConnexion);
         this.prefs = getBaseContext().getSharedPreferences("userPrefs",MODE_PRIVATE);
-        //this.locationService = new LocationService();
+        //this.locationService = new ReservationService();
         if (this.prefs.contains("user") && this.prefs.contains("pass")) {
             EditText username  = this.layoutConnexion.findViewById(R.id.username);
             username.setText(this.prefs.getString("user",""));
@@ -60,12 +60,23 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
         this.layoutConnexion.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Méthode pour masquer le layout de Connexion et afficher le layout d'inscription
+     * @param
+     * @return void
+     */
     @Override
     public void clickInscription() {
         this.layoutInscription.setVisibility(View.VISIBLE);
         this.layoutConnexion.setVisibility(View.GONE);
     }
 
+    /**
+     * Méthode pour la connexion de l'utilisateur
+     * @param email
+     * @param pass
+     * @param remember
+     */
     @Override
     public void submitConnexion(String email, String pass, boolean remember) {
         if(remember){
@@ -85,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
         }
         this.user = new UtilisateurService(this).getUserByEmail(email);
         if(this.user != null){
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this,ListeReservationsActivity.class);
             intent.putExtra("id",this.user.getUserId());
             startActivity(intent);
             finish();
@@ -94,12 +105,20 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
         }
     }
 
+    /**
+     * Méthode pour masquer le layout d'inscription et afficher le layout de connexion
+     */
     @Override
     public void onClickConnexion() {
         this.layoutInscription.setVisibility(View.GONE);
         this.layoutConnexion.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Méthode pour la gestion du formulaire d'inscription
+     * @param user
+     * @return void
+     */
     @Override
     public void submitInscription(Utilisateur user) {
         Inscription(user);
@@ -108,6 +127,12 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.o
         startActivity(intent);
         finish();
     }
+
+    /**
+     * Méthode pour la gestion de l'inscription
+     * @param user
+     * @return void
+     */
     public void Inscription(Utilisateur user){
         this.user = new UtilisateurService(this).getUserById(
                 new UtilisateurService(this).addUser(new Utilisateur(user.getEmail(),user.getPassword()))

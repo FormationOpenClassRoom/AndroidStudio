@@ -9,9 +9,22 @@ public class Restitution {
     private String photo;
     private boolean sync;
 
+    /**
+     * Constructeur par défaut
+     */
     public Restitution() {
     }
 
+    /**
+     * Constructeur avec paramètres
+     * @param retourId
+     * @param locationId
+     * @param isEndommage
+     * @param isPleinEffectue
+     * @param nbKmEffectues
+     * @param photo
+     * @param sync
+     */
     public Restitution(String retourId, String locationId, boolean isEndommage, boolean isPleinEffectue, int nbKmEffectues, String photo, boolean sync) {
         this.retourId = retourId;
         this.locationId = locationId;
@@ -22,6 +35,9 @@ public class Restitution {
         this.sync = sync;
     }
 
+    /**
+     * Getters et Setters
+     */
     public String getRetourId() {
         return retourId;
     }

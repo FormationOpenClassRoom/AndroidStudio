@@ -8,9 +8,22 @@ public class Agence {
     private String codePostal;
     private String ville;
 
+    /**
+     * Constructeur par défaut
+     */
     public Agence() {
+
     }
 
+    /**
+     * Constructeur avec paramètres
+     * @param agenceId
+     * @param raisonSociale
+     * @param siret
+     * @param voie
+     * @param codePostal
+     * @param ville
+     */
     public Agence(String agenceId, String raisonSociale, String siret, String voie, String codePostal, String ville) {
         AgenceId = agenceId;
         this.raisonSociale = raisonSociale;
@@ -20,6 +33,9 @@ public class Agence {
         this.ville = ville;
     }
 
+    /**
+     * Getters et Setters
+     */
     public String getAgenceId() {
         return AgenceId;
     }

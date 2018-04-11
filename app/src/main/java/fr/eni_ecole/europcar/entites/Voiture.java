@@ -12,9 +12,25 @@ public class Voiture {
     private String libelle;
     private boolean sync;
 
+    /**
+     * Constructeur par défaut
+     */
     public Voiture() {
     }
 
+    /**
+     * Constructeur avec paramètres
+     * @param vehiculeId
+     * @param nbPlaces
+     * @param locationMin
+     * @param locationMax
+     * @param tarifMin
+     * @param tarifMax
+     * @param tarifMoyen
+     * @param isDisponible
+     * @param libelle
+     * @param sync
+     */
     public Voiture(String vehiculeId, int nbPlaces, int locationMin, int locationMax, float tarifMin, float tarifMax, float tarifMoyen, boolean isDisponible, String libelle, boolean sync) {
         this.vehiculeId = vehiculeId;
         this.nbPlaces = nbPlaces;
@@ -27,6 +43,10 @@ public class Voiture {
         this.libelle = libelle;
         this.sync = sync;
     }
+
+    /**
+     * Getters et Setters
+     */
 
     public String getVehiculeId() {
         return vehiculeId;

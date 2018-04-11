@@ -2,11 +2,9 @@ package fr.eni_ecole.europcar.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import fr.eni_ecole.europcar.ListeReservationsActivity;
 import fr.eni_ecole.europcar.R;
 import fr.eni_ecole.europcar.entites.Agence;
 import fr.eni_ecole.europcar.fragments.ModifAgenceFragment;
@@ -21,7 +19,11 @@ public class ModifAgenceActivity extends AppCompatActivity implements ModifAgenc
         setContentView(R.layout.activity_modif_agence);
     }
 
-
+    /**
+     * Méthode pour la gestion du formulaire de modification de l'agence
+     * @param agence
+     * @return void
+     */
     @Override
     public void onSubmitSettings(Agence agence) {
         if(agence != null) {
@@ -36,5 +38,6 @@ public class ModifAgenceActivity extends AppCompatActivity implements ModifAgenc
         }
         Intent intent = new Intent(ModifAgenceActivity.this,ListeReservationsActivity.class);
         startActivity(intent);
+        finish();
     }
 }
